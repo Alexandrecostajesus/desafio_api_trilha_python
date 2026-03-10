@@ -1,0 +1,18 @@
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+
+class Settings(BaseSettings):
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore", env_file_encoding="utf-8")
+
+    database_url: str
+    environment: str = "production"
+
+    # JWT configuration
+    jwt_secret: str = "my-secret"
+    jwt_algorithm: str = "HS256"
+    jwt_audience: str = "desafio-bank"
+    jwt_issuer: str = "desafio-bank.com.br"
+    jwt_expiration_minutes: int = 30
+
+
+settings = Settings()
